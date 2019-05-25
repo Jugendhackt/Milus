@@ -3,29 +3,69 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit=no" />
     <title>Milus - Miniluftschiff</title>
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main {
+            margin: 15px auto;
+            background-color: rgb(221, 221, 221);
+            max-width: 95vw;
+            width: 800px;
+            border: 1px solid;
+        }
+
+        .field {
+            width: 100%;
+            font-size: 2em;
+            padding: 10px;
+        }
+
+        .field input {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    Power<br />
-    <input type="range" min="0" max="1023" value="0" id="power-range" onchange="update()" /><br />
-    Direction<br />
-    <input type="range" min="-127" max="128" value="0" id="direction-range" onchange="update()" /><br />
-    Height<br />
-    <input type="range" min="-127" max="128" value="0" id="height-range" onchange="update()" /><br />
+    <div id="overall">
+        <div id="main">
+            <div class="field">
+                Power<br />
+                <input type="range" min="0" max="1023" value="0" id="power-range" onchange="update()" /><br />
+            </div>
+            <div class="field">Direction<br />
+                <input type="range" min="-127" max="128" value="0" id="direction-range" onchange="update()" /><br />
+            </div>
+            <div class="field">
+                Height<br />
+                <input type="range" min="-127" max="128" value="0" id="height-range" onchange="update()" /><br />
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function update() {
+            var power = document.getElementById("power-range").value
+            var direction = document.getElementById("direction-range").value
+            var height = document.getElementById("height-range").value
+
+            var request = new XMLHttpRequest();
+            request.open("POST", "control");
+            request.send("dataforcontrol" + power + "," + direction + "," + height);
+        }
+    </script>
 </body>
-
-<script>
-    function update() {
-        var power = document.getElementById("power-range").value
-        var direction = document.getElementById("direction-range").value
-        var height = document.getElementById("height-range").value
-
-        var request = new XMLHttpRequest();
-        request.open("POST","control");
-        request.send("dataforcontrol" + power + "," + direction + "," + height);
-
-    }
-</script>
 
 </html>
