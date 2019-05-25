@@ -17,9 +17,14 @@
 
 <script>
     function update() {
-        console.log(document.getElementById("power-range").value)
-        console.log(document.getElementById("direction-range").value)
-        console.log(document.getElementById("height-range").value)
+        var power = document.getElementById("power-range").value
+        var direction = document.getElementById("direction-range").value
+        var height = document.getElementById("height-range").value
+
+        var request = new XMLHttpRequest();
+        request.open("POST","control");
+        request.send("dataforcontrol" + power + "," + direction + "," + height);
+
     }
 </script>
 

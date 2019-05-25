@@ -1,2 +1,3 @@
 import connect
-import 
+connect.openAP('Milus-AP')
+control.setup()

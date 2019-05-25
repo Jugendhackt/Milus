@@ -1,4 +1,5 @@
 import usocket as socket
+import control
 
 CONTENT = """\
 HTTP/1.0 200 OK
@@ -13,7 +14,6 @@ addr = ai[0][4]
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(addr)
 s.listen(5)
-counter=0
 
 while True:
     res = s.accept()
@@ -24,9 +24,12 @@ while True:
     print("Request:")
     req = client_s.recv(4096)
     print(req)
-    client_s.send(bytes(CONTENT.format(counter), "utf-8"))
+    parts = req.decode('ascii').split(' ')
+    if parts[1] == '/control':
+        client_s.close()
+        values = req.decode('ascii').split('dataforcontrol')[1].split(',')
+        control.move(int(values[0]),int(values[1]),int(values[2]))
+        continue
+    client_s.send(bytes(CONTENT, "utf-8"))
     client_s.close()
-    #parts = req.decode('ascii').split(' ')
-    #if parts[1] == '/exit':
-    #  break
-    counter += 1
+  
