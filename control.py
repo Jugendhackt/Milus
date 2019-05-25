@@ -21,7 +21,7 @@ def move(power, direction, height):
 	#=======================================
 	#		Direction
 
-	fraction =  abs(direction) / 127
+	fraction =  1 - abs(direction) / 127
 
 	if(direction < 0): 
 		#steer left
@@ -36,8 +36,12 @@ def move(power, direction, height):
 	#=======================================
 	#		Height
 
-	height = abs(height) * 8
 	up = height > 0
-
+	height = abs(height) * 8
 
 	set_power(left, right, height, up)
+
+	print("left: " + str(left))
+	print("right: " + str(right))
+	print("height: " + str(height))
+	print("up: " + str(up))
