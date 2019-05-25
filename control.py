@@ -1,8 +1,8 @@
-from motors import set_powers, setup as intern_setup
+from motors import set_power, setup as intern_setup
 
-def setup() {
+def setup():
 	intern_setup()
-}
+
 
 def move(power, direction, height):
 	'''Move the airship.
@@ -15,7 +15,7 @@ def move(power, direction, height):
 	#=======================================
 	#		Power
 
-	left, right = power
+	left, right = (power, power)
 
 
 	#=======================================
@@ -23,15 +23,14 @@ def move(power, direction, height):
 
 	fraction =  abs(direction) / 127
 
-	if(direction < 0) { 
+	if(direction < 0): 
 		#steer left
 		#right motor pulls stronger
 		#left motor strength decreased
 
 		left *= fraction
-	} else if (direction > 0) {
+	elif (direction > 0):
 		right *= fraction
-	}
 
 
 	#=======================================
@@ -41,4 +40,4 @@ def move(power, direction, height):
 	up = height > 0
 
 
-	set_powers(left, right, height, up)
+	set_power(left, right, height, up)
