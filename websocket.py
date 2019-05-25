@@ -14,6 +14,7 @@ addr = ai[0][4]
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(addr)
 s.listen(5)
+control.setup()
 
 while True:
     res = s.accept()
