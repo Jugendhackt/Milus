@@ -24,11 +24,9 @@ while True:
     print("Request:")
     req = client_s.recv(4096)
     print(req)
-    client_s.send(bytes(CONTENT.format(counter), "ascii"))
+    client_s.send(bytes(CONTENT.format(counter), "utf-8"))
     client_s.close()
-    parts = req.decode('ascii').split(' ')
-    if parts[1] == '/exit':
-      break
+    #parts = req.decode('ascii').split(' ')
+    #if parts[1] == '/exit':
+    #  break
     counter += 1
-
-

@@ -7,4 +7,4 @@ def openAP(apname):
 	ap.active(True)         # activate the interface
 	return(ap)
 
-#ap = openAP('Milus-AP')
+ap = openAP('Milus-AP')
