@@ -26,10 +26,13 @@
             border: 1px solid;
         }
 
-        .field {
-            width: 100%;
+        #main div {
             font-size: 2em;
+        }
+
+        .field {
             padding: 10px;
+            width: 100%;
         }
 
         .field input {
@@ -41,6 +44,7 @@
 <body>
     <div id="overall">
         <div id="main">
+            <h1 class="field">Milus</h1>
             <div class="field">
                 Power<br />
                 <input type="range" min="0" max="1023" value="0" id="power-range" onchange="update()" /><br />
@@ -52,6 +56,9 @@
                 Height<br />
                 <input type="range" min="-127" max="128" value="0" id="height-range" onchange="update()" /><br />
             </div>
+            <footer class="field" style="text-align: right;">
+                erstellt bei Jugend hackt Köln 2019 - <a href="https://github.com/Jugendhackt/Milus" target="_blank">Github</a>
+            </footer>
         </div>
     </div>
 
