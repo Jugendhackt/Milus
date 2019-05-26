@@ -26,11 +26,11 @@ while True:
     req = client_s.recv(4096)
     print(req)
     parts = req.decode('ascii').split(' ')
-    if parts[1] == '/control':
-        client_s.close()
-        values = req.decode('ascii').split('dataforcontrol')[1].split(',')
-        control.move(int(values[0]),int(values[1]),int(values[2]))
-        continue
+    if len(parts) > 1:
+        if parts[1] == '/control':
+            client_s.close()
+            values = req.decode('ascii').split('dataforcontrol')[1].split(',')
+            control.move(int(values[0]),int(values[1]),int(values[2]))
+            continue
     client_s.send(bytes(CONTENT, "utf-8"))
     client_s.close()
-  
